@@ -1,4 +1,5 @@
-\documentclass[floatfix,11pt]{revtex4-1}
+%\documentclass[floatfix,11pt]{revtex4-1}
+\documentclass[floatfix,11pt]{article}
 \input{proposal-commands}
 
 \begin{document}
@@ -49,16 +50,30 @@ Measuring embedding distortion
 \parbox{2.1in}{Two embeddings of molecular configurations of ethanol; the original data is a torus.}\\
 %\parbox{2.1in}{Figure .:
 \end{tabular}
-\\
-What is proposed: {\tt giga-man} a non-linear dimension reduction toolbox in python, that scales to data matrices of order $n\times p \sim 10^12$, which implements the state of the art in the mathematics and statistics of high dimensional geometric learning.
+\\ What is proposed: \gmani, a non-linear dimension reduction toolbox
+in python, that scales to data matrices of order $n\times p \sim
+10^{12}$, which implements the state of the art in the mathematics and
+statistics of high dimensional geometric learning.
 
 
+\textbf{Motivation}
 \bit
-\item data reduction for the sciences must come with guarantees of reproducibility (e.g. outputs not sensitive to initialization of algorithm), stability (outputs not sensitive to variations in sample), as well as with rigurous methods to qquantify the loss of information as well as the variability of the result, and with guarantees of preserving desired properties/features/(geometric) characteristics
+\item data reduction for the sciences must come with guarantees of
+  reproducibility (e.g. outputs not sensitive to initialization of
+  algorithm), stability (outputs not sensitive to variations in
+  sample), as well as with rigurous methods to quantify the loss of
+  information and the variability of the result, and with
+  guarantees of preserving desired properties/features/(geometric)
+  characteristics
 \item here we are concerned with data in the form of high-dimensional points, such as spectra of galaxies (dim = number of spectral bands, but not quite), spatial locations of the atoms in a molecule (dim = number atoms $\times$ spatial dimension 2 or 3), state space of a dynamical system, as well as with non-vector data for which a {\em distance} between points can be defined, such as biological sequences, words and phrases, job descriptions, images, etc.
 \item data reduction consists primarily of dimension reduction, since a very large number of high dimensional data are described by a much smaller number of degrees of freedom (for example, while image resolution can grow from Mega-pixels into Giga-, the image contens does not become richer at the same rate)
-\item but non-linear embeddings can provide data reduction in other ways too. Smoothing the data, by projecting it onto a local manifold. Subsampling the regions where the data is too dense. More about advantages of subsampling. 
-\item[challenges] non-linear geometry is very hard statistically and mathematically. because of the non-linearity of the space, e.g.  (variable) local curvature, naive methods of dimension reduction end up being biased or even inconsistent (tending to unreasonable/degenerate limits when $n\rightarrow \infty$. ``Errors don't average to 0'' in non-linear geometric estimation. The statistical and mathematical methods needed to analyze the properties of embedding algorithms and to design consistent, unbiased, ones are highly technical, and are a field under development. [Proof that of the most popular methods LLE, t-SNE, UMAP are unstable and inconsistent in the limit, depend on parameters that must be set by eyeballing]
+\item but non-linear embeddings can provide data reduction in other ways too. Smoothing the data, by projecting it onto a local manifold. Subsampling the regions where the data is too dense. More about advantages of subsampling.
+  \eit
+  What we will do, again.
+
+  \textbf{Challenges}
+  \bit
+\item Estimating non-linear geometry from ``point cloud'' data is very hard statistically and mathematically. Because of the non-linearity of the space, e.g.  (variable) local curvature, naive methods of dimension reduction end up being biased or even inconsistent (tending to unreasonable/degenerate limits when $n\rightarrow \infty$. ``Errors don't average to 0'' in non-linear geometric estimation. The statistical and mathematical methods needed to analyze the properties of embedding algorithms and to design consistent, unbiased, ones are highly technical, and are a field under development. [Proof that of the most popular methods LLE, t-SNE, UMAP are unstable and inconsistent in the limit, depend on parameters that must be set by eyeballing]
 \item Math is too highly technical to be read by most scientists, engineers and computer scientists. This is a barrier to the adoption of the state of the art knowledge. 
 \item Embedding algorithms relie on a form of interpolation between neighbors (are similar to kernel density estimation). Finding neighbors in high dimensions and large data sets is the main computational bottleneck. 
 \item Eigendecompositions is the {\em perceived} bottleneck, but the PI's own experience and communications with experts show that with careful/expert reweighing, preprocessing, the eigendecomposition step is more tractable than the nearest neighbor step. In particular, eigendecomposition does not depend on the data dimension $p$, but only on the sample size $n$. 
