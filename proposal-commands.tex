@@ -1,0 +1,68 @@
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{setspace}
+\usepackage{wrapfig}
+\usepackage{fancyhdr}
+\usepackage[labelfont=bf]{caption}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{natbib}
+% \usepackage{pdfpages}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+%----- Letter ----
+\textwidth  = 6.5in
+\textheight = 8.8in
+
+\oddsidemargin = -0.25in
+\evensidemargin = 0.0in
+\topmargin = -0.5in
+\headheight = 0.5in
+\headsep = 0.2in
+\footskip = 0.4in
+
+%%%%    HEADER     %%%%
+\renewcommand{\headrulewidth}{0.75pt}
+\pagestyle{fancyplain}
+%\lhead{\small\textit{Mapping galaxies in spectral space}}
+\rhead{\small\textit{PI: Marina Meila}} 
+\fancypagestyle{plain}
+
+%%%%    FOOTER     %%%%
+\renewcommand{\footrulewidth}{0.75pt}
+\fancyfoot[LO]{\small\textit{DE-FOA-0002501}}
+\fancyfoot[CO]{}
+\fancyfoot[RO]{\small\textit{Page \thepage}}
+
+%%%%%% my commands   %%%%%%
+\newcommand{\dist}{{\rm dist}}
+\newcommand{\epsi}{\varepsilon}
+\newcommand{\D}{D}
+\newcommand{\tily}{\tilde{y}}
+\newcommand{\yg}{y_g}
+\newcommand{\ygp}{y_{g'}}
+\newcommand{\xg}{x_g}
+\newcommand{\xgtrue}{x_{g}^{true}}
+\newcommand{\xgptrue}{x_{g'}^{true}}
+\newcommand{\xgf}{x_{g,l}}
+\newcommand{\xgpf}{x_{g',l}}
+\newcommand{\xgp}{x_{g'}}
+\newcommand{\sigg}{\sigma_g}
+\newcommand{\siggf}{\sigma_{g,l}}
+\newcommand{\siggp}{\sigma_{g'}}
+\newcommand{\siggpf}{\sigma_{g',l}}
+
+\newcommand{\ml}{ML}
+\newcommand{\sklearn}{{\tt scikit-learn}}
+\newcommand{\mmani}{{\tt megaman}}
+
+\newcommand{\comment}[1]{}
+\newcommand{\mmp}[1]{}%{\textcolor{blue}{MMP:#1}}
+\newcommand{\bit}{\begin{itemize}}
+\newcommand{\eit}{\end{itemize}}
