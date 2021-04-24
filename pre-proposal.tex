@@ -4,9 +4,9 @@
 
 \begin{document}
 \begin{center}
-{\sc Title}
+{\sc Title} Vertical leap: Embedding high-dimensional data with functional analysis/consistency theorems and super-computers
 
-\textbf{PI: Marina Meila, Professor of Statistics}
+\textbf{PI: Marina Meila} Professor of Statistics
 
 University of Washington
 % Department of Statistics, Box 354322, Seattle WA 98195-4322, 
@@ -79,32 +79,61 @@ statistics of high dimensional geometric learning.
 \item Eigendecompositions is the {\em perceived} bottleneck, but the PI's own experience and communications with experts show that with careful/expert reweighing, preprocessing, the eigendecomposition step is more tractable than the nearest neighbor step. In particular, eigendecomposition does not depend on the data dimension $p$, but only on the sample size $n$. 
 \item Even if phenomena well approximated by manifolds, in fact they are multiscale (or equivalently, noise has structure, is not i.i.d. and not isotropic), and rarely is the dimension constant. One of the contributions of this proposal is to rigurously develop embedding methods with variable dimension (unions of manifold, stratified spaces)
 \item What if data can't be stored in memory? Distributed data? I'd rather not deal with it now. We'll see. 
-
-\item[why non-lin dim reduction great for scientific data] Often data dimension is a function of the resolution of the instrument and does only slowly add new degrees of freedom. Hence, higher $p$ means sharper measurements, less instrument noise: good. Highly non-uniform sampling (e.g. molecular configurations are subject to Boltzmann distribution, with exponential variations of density). When data non-uniform, in highly concentrated regions it becomes redundant -- only a freaction of it is sufficient to estimate the geometry; statistically, subsampling the data in this regime produces a faster converging embedding. 
+  \eit
+  
+  {\bf Why non-lin dim reduction great for scientific data}
+  \bit
+  \item Often data
+dimension is a function of the resolution of the instrument and does
+only slowly add new degrees of freedom. Hence, higher $p$ means
+sharper measurements, less instrument noise: good. Highly non-uniform
+sampling (e.g. molecular configurations are subject to Boltzmann
+distribution, with exponential variations of density). When data
+non-uniform, in highly concentrated regions it becomes redundant --
+only a freaction of it is sufficient to estimate the geometry;
+statistically, subsampling the data in this regime produces a faster
+converging embedding.
 \item many physical processes described mathematically by manifolds and vector fields. hence the data driven approximations have a basis for being supported by physical theory.
 \eit
 
-What we will do
+{\bf What we will do}
 \bit
-\item Approximate fast nearest neighbor method. Main sources Indyk, Charikar, Razenshteyn. 
-\item Proof that {\em this} approximate nearest neighbor is sufficient to assure convergence when used with manifold learning algorithms Source: Fefferman et collabs\footnote{Fefferman is Fields medalist.} 
-\item The methods above depend on constants with undknown values. Design methods to estimate the constants from data (e.g. a form of CV, by geometric consistency, etc).
-\item Translate the methods above into algorithms. 
-\item Implement the algorithms efficiently to obtain a toolbox of neighborhood construction algorithms, and a toolbox of embedding algorithms. These will be called the core algorithms. 
+\item Design implementable algorithm for approximate fast nearest neighbor method based on theoretical state of the art. Main sources Indyk, Charikar, Razenshteyn. MM
+\item Proof that {\em this} approximate nearest neighbor is sufficient to assure convergence when used with manifold learning algorithms Source: Fefferman et collabs\footnote{Fefferman is Fields medalist.} MMM
+\item The methods above depend on constants with undknown values. Design methods to estimate the constants from data (e.g. a form of CV, by geometric consistency, etc). MMM
+\item Summarizing/subsampling big data: Coresets and hierachical indexing. Sources TBW. M 
+\item Translate the methods above into algorithms. M
+\item Implement the algorithms efficiently to obtain a toolbox of neighborhood construction algorithms, and a toolbox of embedding algorithms. These will be called the core algorithms. M
 \item Develop around the core algorithms a suite of other methods.
  \bit
- \item Preprocessing: subsampling, estimating the local neighborhood size, estimating the intrinsic dimension, data indexing (related to subsampling)
- \item Non-embedding methods based on neighborhood graphs: L1 Laplacian and Helmholtz-Hodge decomposition, other TDA applications, kernel regression on manifolds
- \item Postprocessing: estimating/correcting the embedding by metric learning and Riemannian Relaxation, estimating the noise (e.g. MSE, locally), separating the data into re
+ \item Preprocessing: subsampling, estimating the local neighborhood size, estimating the intrinsic dimension, data indexing (related to subsampling) M
+ \item Non-embedding methods based on neighborhood graphs: L1 Laplacian and Helmholtz-Hodge decomposition, other TDA applications, kernel regression on manifolds M
+ \item Postprocessing: estimating/correcting the embedding by metric learning and Riemannian Relaxation, estimating the noise (e.g. MSE, locally), stratifying the data by dimension, MM
+   \eit
+ \item Data reduction for chemistry and materials sciences
+ \item Data reduction for astronomy 
+   \bit
+ \item LSST
+ \item simulated data
+   \eit
  \eit
-\eit
 
-\underline{\bf Team expertise}
-The PI brings extensive experience in ML, from the statistical issues \cite{PerraultMMcQueen:nips17} to software \comment{\cite{mcqueenMVdpZ:megaman16,*mcqueenMVdpZ:megaman-jmlr16}} while the co-PIs are at the forefront of ML for spectroscopic data \cite{vanderplasConnolly:09}.
+
+\underline{\bf Team expertise} Team of exceptional depth and breadth.
+MMP has spent more than 10 years pondering the problems in non-parametric data analysis and geometric learning. She is aware of of the theoretical advances, and capable to discern their significance w.r.t. practical problems and existing data. More specifically, theorems must relie on testable assumptions to be of methodological value. The PI's contribution is focused on this aspect: how to make mathematics meet real life problems? What can we measure from real data so that we can guarantee that theory applies?
+The PI is an expert in Machine Learning, and has a long track record of developing algorithms in geometric data analysis and unsupervised learning, and of deploying them as software packages.
+
+All team members are long term collaborators, and all are Senior Fellows of the eSCience Institute. Meila, Connolly and Ivezic collaborated on more than five grant proposals; Meila and Beck collaborated on four grant proposals, two of them funded by the DE under FOA .... Meila and Vasquez-Mayagoitia collaborated on the ALCF Grant .... As part of this collaboration, the software \mmani~was ported on the Theta, and UW student Yu-chia Chen visited ALCF. \mmani~originated in the first Data Science Incubator as a collaboration between Meila and Jake VanderPlas. 
+
+%The PI is in the unique position to be aware of the theoretical advances in manifold learning and geometric data analysis, 
+
+
+%brings extensive experience in ML, from the statistical issues \cite{PerraultMMcQueen:nips17} to software \cite{mcqueenMVdpZ:megaman16,*mcqueenMVdpZ:megaman-jmlr16}
+
 
 {\bf Previous work}
 
-{\bf Existing support} No other funding exists for this project. \mmp{ The PI also has no current funding for general manifold learning. Closest related support consists of an IGERT funded student, and a collaborative grant of 170M CPU hours at the Argonne Labs Computing Facility (see CV) since September 2017 for the PI's research on manifold learning in chemistry.}
+{\bf Existing support} No other funding exists for this project. collaborative grant of 170M CPU hours at the Argonne Labs Computing Facility (see CV) since September 2017 for the PI's research on manifold learning in chemistry.
 
 {\bf Readiness} The package {\tt megaman}\footnote{{\tt http://mmp2.github.io/megaman}} \cite{mcqueenMVdpZ:megaman16,*mcqueenMVdpZ:megaman-jmlr16} implements all the manifold learning algorithms described in this proposal. Our pilot experiments (one shown in Fig. 3) and \cite{Yip04} \comment{prove that that we have the computing resources and }strongly suggest that low dimensional structure exists in the SDSS data. The PI and co-PI are co-mentoring PhD student Yu-chia Chen, and are committed to developing open source machine learning software (e.g {\tt megaman}, contributions to {\tt scikit-learn}). \comment{With infrastructure and collaboration in place, we}We request funding for one graduate student, and one undergraduate student (only computing costs) for 12 months.
 
@@ -124,7 +153,14 @@ The PI brings extensive experience in ML, from the statistical issues \cite{Perr
 \newpage
 \centerline{\textbf{Senior Personnel}}
 \begin{tabular}{llll}
+  Last name & First name & Title & Institution\\
+  \hline
 Meila & Marina & Professor & University of Washington\\
+Beck & David & Professor &  University of Washington\\
+Ivezic & Zeljko & Professor &  University of Washington \\
+Connolly & Andrew & Professor &  University of Washington (???)\\
+Juric & Mario & Associate Professor &  University of Washington (???)\\
+Vasquez-Mayagoitia & Alvaro & Computational Scientist & Argonne National Computing Facility\\
 \end{tabular}
 
 \centerline{\textbf{Collaborators, Co-editors, and Graduate and Postdoctoral Advisors and Advisees of the PI and Senior/Key Personnel}}
