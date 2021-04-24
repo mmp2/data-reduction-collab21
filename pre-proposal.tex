@@ -20,44 +20,42 @@ Phone: 206-543-8484,  {\tt mmp@stat.washington.edu}
 \singlespacing
 \vspace{-.75cm}
 \noindent\begin{tabular}{lll}
-\multicolumn{3}{c}{Some examples of data reduction}\\
+\multicolumn{3}{c}{Some examples of data reduction by low dimensional embedding and smoothing}\\
 \includegraphics[width=2.1in]{Figures/word2vec_rmetric_plot_noaxis_trim.png} &
 %\includegraphics[width=2.2in]{Figures/specById_asp.png} & 
 \includegraphics[width=2.5in,clip=]{Figures/spectrum_data_before-trim.pdf} 
 &
 \includegraphics[width=2.5in,clip=]{Figures/smoothed_velocity_field_alpha_50.pdf}\\
-\parbox[t]{2.1in}{3D embedding of 3,000,000 words and phrases represented in 300 dimensions from {\tt https://code.google.com/archive/p/word2vec/}}
+\multicolumn{2}{l}{
+\parbox[t]{4.5in}{{\bf Left:} 3D embedding of 3,000,000 words and phrases represented in 300 dimensions from {\tt https://code.google.com/archive/p/word2vec/}; {\bf middle:} 3D embedding of 665,000 spectra of galaxies from {\tt www.sdss.org} with 3750 wavelengths}}
 &
-\parbox{2.1in}{3D embedding of 675,000 spectra of galaxies from {\tt www.sdss.org} with 3750 wavelengths}
-&
-\parbox{2.5in}{Smoothed velocity field of 20,000 ocean buoys from {\tt
-https://www.ndbc.noaa.gov}}
+\parbox{2.5in}{{\bf right:} Smoothed velocity field of 20,000 ocean buoys from {\tt https://www.ndbc.noaa.gov}}
 \\
 \end{tabular}
 \begin{tabular}{llll}
-\multicolumn{3}{c}{Naive embedding algorithms introduce artefacts}
+\multicolumn{3}{c}{Naive embeddings introduce artefacts}
 &
 Measuring embedding distortion
 \\
-\includegraphics[width=1.9in]{Figures/D1_original_data.png} &
-\includegraphics[width=1.in]{Figures/umap_mindist_comp.png} &
-\includegraphics[width=1.3in,angle=90]{Figures/geometric_vs_normalized.png}
+\includegraphics[width=1.7in]{Figures/D1_original_data.png} &
+\includegraphics[width=0.8in]{Figures/umap_mindist_comp.png} &
+\includegraphics[width=1.2in,angle=90]{Figures/geometric_vs_normalized.png}
 &
-\includegraphics[width=1.3in]{Figures/aspirin-postclu1-phi234Rmetric-tau22.png}
+\includegraphics[width=1.2in]{Figures/aspirin-postclu1-phi234Rmetric-tau22.png}
 \\
-\multicolumn{2}{l}{\parbox{3in}{Figure .: Embedding of a 2D strip by UMAP, showing 4 clusters}}
-&
-\parbox{2.1in}{Two embeddings of molecular configurations of ethanol; the original data is a torus.}\\
-%\parbox{2.1in}{Figure .:
+\multicolumn{3}{l}{\parbox{4.7in}{{\bf Left:} Embedding of a 2D strip by UMAP, showing 4 clusters inexistent in the original data; {\bf middle:} two embeddings of molecular configurations of ethanol; the original data is a torus.}}\\
 \end{tabular}
-\\ What is proposed: \gmani, a non-linear dimension reduction toolbox
+
+What is proposed: \gmani, a non-linear dimension reduction toolbox
 in python, that scales to data matrices of order $n\times p \sim
 10^{12}$, which implements the state of the art in the mathematics and
 statistics of high dimensional geometric learning.
 
-
 \textbf{Motivation}
 \bit
+\item here we are concerned with data in the form of high-dimensional points, such as spectra of galaxies (dim = number of spectral bands, but not quite), spatial locations of the atoms in a molecule (dim = number atoms $\times$ spatial dimension 2 or 3), state space of a dynamical system, as well as with non-vector data for which a {\em distance} between points can be defined, such as biological sequences, words and phrases, job descriptions, images, etc.
+\item data reduction consists primarily of dimension reduction, since a very large number of high dimensional data are described by a much smaller number of degrees of freedom (for example, while image resolution can grow from Mega-pixels into Giga-, the image contens does not become richer at the same rate)
+\item but non-linear embeddings can provide data reduction in other ways too. Smoothing the data, by projecting it onto a local manifold. Subsampling the regions where the data is too dense. More about advantages of subsampling.
 \item data reduction for the sciences must come with guarantees of
   reproducibility (e.g. outputs not sensitive to initialization of
   algorithm), stability (outputs not sensitive to variations in
@@ -65,12 +63,12 @@ statistics of high dimensional geometric learning.
   information and the variability of the result, and with
   guarantees of preserving desired properties/features/(geometric)
   characteristics
-\item here we are concerned with data in the form of high-dimensional points, such as spectra of galaxies (dim = number of spectral bands, but not quite), spatial locations of the atoms in a molecule (dim = number atoms $\times$ spatial dimension 2 or 3), state space of a dynamical system, as well as with non-vector data for which a {\em distance} between points can be defined, such as biological sequences, words and phrases, job descriptions, images, etc.
-\item data reduction consists primarily of dimension reduction, since a very large number of high dimensional data are described by a much smaller number of degrees of freedom (for example, while image resolution can grow from Mega-pixels into Giga-, the image contens does not become richer at the same rate)
-\item but non-linear embeddings can provide data reduction in other ways too. Smoothing the data, by projecting it onto a local manifold. Subsampling the regions where the data is too dense. More about advantages of subsampling.
   \eit
-  What we will do, again.
-
+What we will do, again.
+\bit
+\item  {\em Methods} for nearest neighbor search, data indexing and subsampling, suitable for non-linear embedding. The methods will be grounded in state of the art statistical theory. Main contribution under this grant: original research on how to measure/test from data when theoretical conditions apply; to choose the optimal embedding method for a particular data, to derive what guarantees can be obtained from theory for the reduction of a real data set. 
+\item {\em Software distribution} Release of a suite of python packages implementing the above methods, and specializing them for \mmp{fill in specific tasks} in \mmp{astrononomy, chemistry} 
+\eit
   \textbf{Challenges}
   \bit
 \item Estimating non-linear geometry from ``point cloud'' data is very hard statistically and mathematically. Because of the non-linearity of the space, e.g.  (variable) local curvature, naive methods of dimension reduction end up being biased or even inconsistent (tending to unreasonable/degenerate limits when $n\rightarrow \infty$. ``Errors don't average to 0'' in non-linear geometric estimation. The statistical and mathematical methods needed to analyze the properties of embedding algorithms and to design consistent, unbiased, ones are highly technical, and are a field under development. [Proof that of the most popular methods LLE, t-SNE, UMAP are unstable and inconsistent in the limit, depend on parameters that must be set by eyeballing]
@@ -94,9 +92,12 @@ only a freaction of it is sufficient to estimate the geometry;
 statistically, subsampling the data in this regime produces a faster
 converging embedding.
 \item many physical processes described mathematically by manifolds and vector fields. hence the data driven approximations have a basis for being supported by physical theory.
+\item Nearest-neighbor methods have been proved to be {\em adaptive} to intrinsic dimension.
+\item Good statistics implies stable and efficient computation. In particular, complexity of geometric algorithms, if properly tuned, depends on the {\em intrinsic dimension/number of free parameters}, not on data dimension (with the exception of distance computations). 
+\item The most theoretically efficient algorithms do not become so until data isvery large.
 \eit
 
-{\bf What we will do}
+{\bf What we will do}\footnote{The number of M's after a task is the amount of original statistical/algorithm/methodology research needed to produce an implementable method}
 \bit
 \item Design implementable algorithm for approximate fast nearest neighbor method based on theoretical state of the art. Main sources Indyk, Charikar, Razenshteyn. MM
 \item Proof that {\em this} approximate nearest neighbor is sufficient to assure convergence when used with manifold learning algorithms Source: Fefferman et collabs\footnote{Fefferman is Fields medalist.} MMM
@@ -163,7 +164,8 @@ Juric & Mario & Associate Professor &  University of Washington (???)\\
 Vasquez-Mayagoitia & Alvaro & Computational Scientist & Argonne National Computing Facility\\
 \end{tabular}
 
-\centerline{\textbf{Collaborators, Co-editors, and Graduate and Postdoctoral Advisors and Advisees of the PI and Senior/Key Personnel}}
+\vspace{0.4em}
+\centering{\textbf{Collaborators, Co-editors, and Graduate and Postdoctoral Advisors and Advisees of the PI and Senior/Key Personnel}}
 \begin{tabular}{llll}
 
 \end{tabular}
