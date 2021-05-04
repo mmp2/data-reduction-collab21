@@ -18,7 +18,7 @@
 
 %----- Letter ----
 \textwidth  = 6.5in
-\textheight = 8.8in
+\textheight = 9in
 
 \oddsidemargin = -0.in
 \evensidemargin = 0.0in
@@ -29,20 +29,28 @@
 
 %%%%    HEADER     %%%%
 \renewcommand{\headrulewidth}{0.75pt}
-\pagestyle{fancyplain}
+%\pagestyle{fancyplain}
+\pagestyle{empty}
 %\lhead{\small\textit{Mapping galaxies in spectral space}}
 %\rhead{\small\textit{PI: Marina Meila}} 
 \fancypagestyle{plain}
 
 %%%%    FOOTER     %%%%
 \renewcommand{\footrulewidth}{0.75pt}
-\fancyfoot[LO]{\small\textit{DE-FOA-0002501}}
+\fancyfoot[LO]{}%\small\textit{DE-FOA-0002501}}
 \fancyfoot[CO]{}
-\fancyfoot[RO]{\small\textit{Page \thepage}}
+\fancyfoot[RO]{}%\small\textit{Page \thepage}}
+
+%%%% REFERENCES SECTION %%%%%
+\renewcommand{\refname}{References}
+\makeatletter
+\renewcommand\bibsection{%
+\paragraph{\refname}
+%  \section*{\underline{\refname}\@mkboth{\MakeUppercase{\refname}}{\MakeUppercase{\refname}}}%
+}%
+\makeatother
 
 %%%%%% my commands   %%%%%%
-
-
 \newcommand{\dist}{{\rm dist}}
 \newcommand{\epsi}{\varepsilon}
 \newcommand{\D}{D}

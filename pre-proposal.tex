@@ -33,9 +33,9 @@
 \\
 \end{tabular}
 \begin{tabular}{llll}
-\multicolumn{3}{c}{Naive embeddings introduce artefacts}
+\multicolumn{3}{c}{Current widely used embeddings introduce artefacts}
 &
-\parbox[t]{1.5in}{\hspace{-0.1em}Measuring distortion \cite{2013arXiv1305.7255P}}
+\parbox[t]{1.5in}{\hspace{-0.5em}Measuring distortion \cite{2013arXiv1305.7255P}}
 \\
 \includegraphics[width=1.6in]{Figures/D1_original_data.png} &
 \includegraphics[width=0.8in]{Figures/umap_mindist_comp.png} &
@@ -51,7 +51,7 @@
 in python, that scales to data matrices of order $n\times p \sim
 10^{12}$, by vertically incorporating the state of the art in the mathematics and statistics of high dimensional geometric learning, and specifically in fast approximate {\em near neighbor (NN)} search.
 
-\textbf{Motivation} Data in the form of
+\textbf{Motivation and challenges} Data in the form of
 high-dimensional ``point clouds'', \comment{such as spectra of galaxies \comment{(with
 dimension given by the number of spectral wavelengths)}, spatial
 locations of the atoms in a molecule \comment{(with dimension given by the number atoms $\times$ spatial dimension 2 or 3)}, the state space of a dynamical system, as well as data for which a {\em distance} between observations can
@@ -74,48 +74,49 @@ of methods is known as (non-linear) {\em  embedding} methods.
   guarantees of preserving desired properties/features/(geometric)
   characteristics}
 
-\textbf{Challenges} Estimating non-linear geometry is hard in statistical and mathematical terms. This is why na{i}ve embeddings, not grounded in theory, are {\em biased}, introducing distortions, or even {\em inconsistent}, tending to unreasonable/degenerate limits when $n\rightarrow \infty$. The statistical methods needed to analyze the properties of embedding algorithms and to design consistent, unbiased, ones are being developed. For example, \cite{2013arXiv1305.7255P} introduce a method based on Riemannian geometric concepts to calculate and to correct distortions in embeddings (see Figure). This method guarantees that the low dimensional embedding is isometric (preserves the intrinsic geometry) of the original, and can also detect degeneracies. 
+Estimating non-linear geometry is hard in statistical and mathematical terms. This is why na{i}ve embeddings, not grounded in theory, are {\em biased}, introducing distortions, or even {\em inconsistent}, tending to unreasonable/degenerate limits when $n\rightarrow \infty$. The statistical methods needed to analyze the properties of embedding algorithms and to design consistent, unbiased, ones are being developed. For example, \cite{2013arXiv1305.7255P} introduce a method based on Riemannian geometric concepts to calculate and to correct distortions in embeddings (see Figure). This method guarantees that the low dimensional embedding is isometric (preserves the intrinsic geometry) of the original, and can also detect degeneracies. 
 However, (1) existing theory is too technical to be accesible to most scientists and engineers; (2) the theorems depend on unspecified constants and on properties of the data. To bring them to be relevant to science {\em one must develop methods to measure and test} if the theoretical conditions hold. One must also select those theoretical results that relie on testable assumptions, and that best fit the statistical structure of the problem. \comment{For example, the embedding algorithms must adapt to  the density of molecular configurations in state space can vary exponentially, or to the variation of measurements noise with red-shift and wavelength in spectrographic observations of galaxies, and exploit these properties, whenever possible.}
 
-(3) Further scaling up embedding algorithms by a factor of 1000, depends on accelerating {\em approximate} NN search. Ensuring that statistical guarantees extend to approximate NN is the methodological focus of this work.
-
+(3) Further scaling up embedding algorithms by a factor of 1000 or more, depends crucially on accelerating {\em approximate} NN \cite{charikarKapralovNouriSiminelakis:kde20} search. The first methodological focus of this work is ensuring that statistical guarantees for embedding algorithms still hold when approximate NN is used. The second is to translate these guarantees into uncertainty quantifications for actual data. 
 
 \textbf{What we will do}
- {\em Methods} for approximate near neighbor search, data indexing and subsampling, statistically suitable for non-linear embedding. The methods will be grounded in state of the art statistical and CS theory, and will come with error estimates, noise and information loss measures, and diagnosis methods (e.g. for degeneracy).\\
-{\em Theory}  Original research on how to measure/test from data when theoretical conditions apply; to choose the optimal embedding method for a particular data, to derive what guarantees can be obtained from theory for the reduction of a real data set.
+\\
+{\em Methods (MM)} for approximate near neighbor search, data indexing and subsampling, statistically suitable for non-linear embedding. The methods will be grounded in state of the art statistical and CS theory, and will come with error estimates, noise and information loss measures, and diagnosis methods (e.g. for degeneracy). [Responds to Priority Research Directions (PRD) (1,3)]\\
+{\em Theory (MM)}  Original research on how to measure/test from data when theoretical conditions apply; to choose the optimal embedding method for a particular data, to derive what guarantees can be obtained from theory for the reduction of a real data set. [PRD (1,3)]
  \\
-{\em Specific sciences} have specific data statistitics (e.g. variations in data density, noise properties). We will focus the generic data reduction methods above on data properties relevant to astronomy, astrophyisics, chemistry, and bio-engineering.\\
-{\em Software} Release of a suite of python packages implementing the above methods, and specializing them for \mmp{fill in specific tasks} in \mmp{astrononomy, chemistry}. This will be based on the existing \mmani~methodology, completed with the implementation of the above results.
+{\em Specific sciences (DB,AC,ZI,MJ)} have specific data statistitics (e.g. variations in data density, noise properties). We will specialize the generic data reduction methods above on data properties relevant to astronomy, astrophyisics, chemistry, and bio-engineering.[PRD (4)]\\
+{\em Software (AVM$+$DB,AC,ZI,MJ,MM)} Release of a suite of open-source python packages implementing the above methods, and specializing them for the Legacy Survey of Space and Time (LSST) data (40B points $\times$ 10,000 dimensions), and Molecular Dynamics simulations. 
+Platforms: generic clusters like the AWM, Hyak, and Leadership Computing Facilities (LCF), such as {\tt Aurora, Polaris}. [PRD (4)]
 \comment{ (3) Computationally, finding neighbors of a point in high dimensions is the bottleneck, and approximate methods must be proved to not compromise the consistency of the embedding algorithm.
 These are the barriers to the adoption of the state of the art knowledge in data embedding,  and herein lies our main contribution. }
 
-\underline{\bf Team expertise} %Team of exceptional depth and breadth.
-PI Meila is uniquely situated to successfully carry out this work. She is fluent in the statistical and theoretical CS advances, and can critically judge their relevance. She has a 10 year long track record of addressing critical geometric learning problems by novel methods grounded in theory \citep{2013arXiv1305.7255P,}. Her group maintains \mmani, capable of applying these to millions of data points, and has collaborations with ALCF and Sppexa (German Exa Scale Computing Consortium) to expand these to HPC environments.
+\underline{\bf Team} %Team of exceptional depth and breadth.
+PI Meila is uniquely situated to successfully carry out this work. She is fluent in the statistical and theoretical CS advances, and can critically judge their relevance. She has a 10 year long track record of addressing critical geometric learning problems by novel methods grounded in theory \citep{2013arXiv1305.7255P,MChen:ies-neurips19}. Her group maintains \mmani, an open-source package capable of applying these to millions of data points, and has collaborations with ALCF and Sppexa (German Exa Scale Computing Consortium) to expand these to HPC environments.
 
-DACB, ZI, AVM
-
-All team members are long term collaborators, and all are Senior Fellows of the eSCience Institute. \comment{Meila, Connolly and Ivezic collaborated on more than five grant proposals; Meila and Beck collaborated on four grant proposals, two of them funded by the DE under FOA .... Meila and Vasquez-Mayagoitia collaborated on the ALCF Grant .... As part of this collaboration, the software \mmani~was ported on the Theta, and UW student Yu-chia Chen visited ALCF. \mmani~originated in the first Data Science Incubator as a collaboration between Meila and Jake VanderPlas. }
+All team members are experts in data science and interdisciplinary research, and have collaborated with the PI. DB and AC are respectively Director and Director of Research for the eScience Institute and experts in cosmology, respectively chemistry, bio-engineering, ZI is the Project Scientist for the LSST, MJ is Director of the DIRAC Institute for Cosmlogical and Astrophysical Research. 
+\comment{Meila, Connolly and Ivezic collaborated on more than five grant proposals; Meila and Beck collaborated on four grant proposals, two of them funded by the DE under FOA .... Meila and Vasquez-Mayagoitia collaborated on the ALCF Grant .... As part of this collaboration, the software \mmani~was ported on the Theta, and UW student Yu-chia Chen visited ALCF. \mmani~originated in the first Data Science Incubator as a collaboration between Meila and Jake VanderPlas. }
 \comment{
 Dr. Marina Meila is Professor of Statistics with adjunct appointments in Computer Science and Electrical Engineering at UW. Her primary expertise is in machine learning, specifically in statistical learning, high-dimensional inference and big data. She has widely recognized contributions to learning in graphical models, spectral clustering,37 non-linear dimension reduction,38 Bayesian statistics,39 and sparse estimation. Her group developed the open source Python package “megaman”40 (over 45K downloads) which performs dimension reduction and other ML tasks on millions of points in thousands of dimensions. She has authored 108 publications and has an h-index of 36.
-Dr. David Beck is the Director of Research for the eScience Institute, the University of Washington’s central institute for data science and machine learning. He directs a team that develops new data science methods and software in coordination with researchers across the pacific northwest. He is an expert in the development and application of open source tools for data science and machine learning in areas such as energy, environment, and health. He is the author over 80 peer reviewed publications with a h-index of 31.
+, the University of Washington’s central institute for data science and machine learning. He directs a team that develops new data science methods and software in coordination with researchers across the pacific northwest. He is an expert in the development and application of open source tools for data science and machine learning in areas such as energy, environment, and health. He is the author over 80 peer reviewed publications with a h-index of 31.
 }
 
-\mmp{1/2 page title and fig, 1 page text, 1/2 page team and citations; need to say something about distortion, Rmetric and smoothing!}
-\vspace{-2.1em}
+\vspace{-1.1em}
 \bibliographystyle{abbrv}
 \bibliography{proposal}
-
+\end{document}
 \newpage
 \centerline{\textbf{Senior Personnel}}
-\begin{tabular}{llll}
+\vspace{1.5em}
+\begin{tabular}{lllll}
   Last name & First name & Title & Institution\\
   \hline
-Meila & Marina & Professor & University of Washington\\
-Beck & David & Professor &  University of Washington\\
-Ivezic & Zeljko & Professor &  University of Washington \\
-Connolly & Andrew & Professor &  University of Washington \\
-Juric & Mario & Associate Professor &  University of Washington\\
-Vasquez-Mayagoitia & Alvaro & Computational Scientist & Argonne National Computing Facility\\
+Beck & David & Professor &  University of Washington & co-PI\\
+Connolly & Andrew & Professor &  University of Washington& co-PI \\
+Ivezic & Zeljko & Professor &  University of Washington& co-PI \\
+Juric & Mario & Associate Professor &  University of Washington& co-PI\\
+Meila & Marina & Professor & University of Washington& PI\\
+Vasquez-Mayagoitia & Alvaro & Computational & Argonne National& co-PI\\
+& &Scientist & Computing Facility&\\
 \end{tabular}
 
 \vspace{1.4em}
@@ -124,4 +125,14 @@ Vasquez-Mayagoitia & Alvaro & Computational Scientist & Argonne National Computi
 
 \end{tabular}
 
-\end{document}
+
+Molecular dynamics of hundreds of thousands and multi-million atom simulations are becoming more common in materials science and biochemistry, such kind of simulations are extremely data intensive, while storing and post-processing data is highly demanding in terms of CPU cycles and non-volatile memory. DOE has announced exascale capabilities in its Leadership Computing Facilities (LCF).  We will collaborate with LCF to accelerate post-processing exascale simulations and enable in-situ analysis. We would collaborate with ALCF to port Gigaman to use efficiently hardware accelerators and make the most of specialized architectures for data analysis.
+
+DOE has announced exascale capabilities in its Leadership Computing Facilities (LCF), such as Aurora and Frontier. 
+
+We would collaborate with ALCF to port Gigaman to use efficiently hardware accelerators and make the most of specialized architectures for data analysis in Aurora and Polaris.
+
+ZI is the Project Scientist for the Rubin Obsevatory’s Legacy Survey of Space and Time (LSST).
+LSST dataset can be described as a 10,000-dimensional space populated by 40 billion points
+and thus will provide prime testing ground for new manifold algorithms proposed here.
+
